@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_APPS 10
+
+int main() {
+    char appName[MAX_APPS][50];
+    int usageTime[MAX_APPS];
+    int count = 0;
+    int choice;
+
+    while (1) {
+        printf("\n===== 앱 사용 시간 관리 =====\n");
+        printf("1. 앱 사용 시간 추가\n");
+        printf("2. 전체 사용 시간 보기\n");
+        printf("3. 종료\n");
+        printf("선택: ");
+        scanf("%d", &choice);
+
+        if (choice == 1) {
+            if (count >= MAX_APPS) {
+                printf("더 이상 추가할 수 없습니다.\n");
+                continue;
+            }
+
+            printf("앱 이름 입력: ");
+            scanf("%s", appName[count]);
+
+            printf("사용 시간(분) 입력: ");
+            scanf("%d", &usageTime[count]);
+
+            count++;
+            printf("추가 완료!\n");
+        }
+        else if (choice == 2) {
+            printf("\n===== 사용 시간 목록 =====\n");
+            int total = 0;
+
+            for (int i = 0; i < count; i++) {
+                printf("%s : %d분\n", appName[i], usageTime[i]);
+                total += usageTime[i];
+            }
+
+            printf("총 사용 시간: %d분\n", total);
+        }
+        else if (choice == 3) {
+            printf("프로그램 종료\n");
+            break;
+        }
+        else {
+            printf("잘못된 입력입니다.\n");
+        }
+    }
+
+    return 0;
+}
